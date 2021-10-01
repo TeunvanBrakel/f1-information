@@ -7,8 +7,8 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
-
+  build_NetCore:
+  
     runs-on: ubuntu-latest
 
     steps:
@@ -26,3 +26,18 @@ jobs:
     - name: Test
       working-directory: Back-end/f1-information-backend
       run: dotnet test --no-build --verbosity normal
+  build_Angular:
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Install Dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build -- --prod
+        
