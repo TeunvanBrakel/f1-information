@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "rl84u1x/OGZbriZgwr5UIOk73lTQVIA2ui6I/fPTJPHYaTVryZ1SVgBJJKVEUtLPi+zoV+dnufVbZ2Flh0fWJg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\teunv\\OneDrive\\Documenten\\Fontys\\Semester 3\\Individueel\\f1-information\\Back-end\\f1-information-backend\\f1-information-backend\\f1-information-backend.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\teunv\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.10.13\\microsoft.visualstudio.azure.containers.tools.targets.1.10.13.nupkg.sha512"
+  ],
+  "logs": []
+}
