@@ -37,7 +37,9 @@ jobs:
         with:
           node-version: 12.x
       - name: Install Dependencies
+        working-directory: Front-end/f1-information-frontend
         run: npm ci
       - name: Build
+        working-directory: Front-end/f1-information-frontend
         run: npm run build -- --prod
         
