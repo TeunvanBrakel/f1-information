@@ -15,4 +15,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+      
+      run: docker build -t teunix/my-private-repo
+    
+    - name: Test the Docker image
+      run: docker run teunix/my-private-repo
+      
+    - name: deploy Docker image to dockerhub
+      run: docker push teunix/my-private-repo
