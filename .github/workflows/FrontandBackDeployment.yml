@@ -1,10 +1,10 @@
-name: Docker Image CI
+name: CD
 
 on:
   push:
-    branches: [ Test ]
+    branches: [ main ]
   pull_request:
-    branches: [ Test ]
+    branches: [ main ]
 
 jobs:
 
