@@ -18,7 +18,6 @@ jobs:
     - name: Docker Login
       uses: docker/login-action@v1.10.0
       with:
-          password: ${{ a583d209-f9cd-4b54-b098-a0041a850c50}}
           run: docker login --username teunix
           
     - name: Build the Docker image
