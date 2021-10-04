@@ -22,4 +22,5 @@ jobs:
       run: docker run teunix/my-private-repo
       
     - name: deploy Docker image to dockerhub
+      run: docker login
       run: docker push teunix/my-private-repo
