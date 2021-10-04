@@ -21,7 +21,7 @@ jobs:
       run: docker login
       
     - name: tag
-      run: docker tag mylocalimage:latest teunix/my-private-repo:myfirstimagepush
+      run: docker tag teunix/my-private-repo:latest teunix/my-private-repo:myfirstimagepush
       
     - name: Test the Docker image
       run: docker run teunix/my-private-repo:myfirstimagepush
