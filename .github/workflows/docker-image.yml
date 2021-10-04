@@ -24,9 +24,6 @@ jobs:
     - name: Build the Docker image
       run: docker build -t teunix/my-private-repo .
       
-    - name: login
-      run: docker login
-      
     - name: tag
       run: docker tag teunix/my-private-repo:latest teunix/my-private-repo:myfirstimagepush
       
