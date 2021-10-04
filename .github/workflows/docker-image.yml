@@ -20,7 +20,9 @@ jobs:
     
     - name: Test the Docker image
       run: docker run teunix/my-private-repo
+    
+    - name: login
+      run: docker login
       
     - name: deploy Docker image to dockerhub
-      run: docker login
       run: docker push teunix/my-private-repo
