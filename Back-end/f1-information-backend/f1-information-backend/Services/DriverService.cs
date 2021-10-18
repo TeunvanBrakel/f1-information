@@ -12,10 +12,12 @@ namespace f1_information_backend.Services
         static int nextId = 3;
         static DriverService()
         {
+            Driver Max = new Driver("Max", 23, "Red bull") { Id = 1 };
+            Driver Lewis = new Driver("Lewis", 34, "Mercedes") { Id = 2 };
             Drivers = new List<Driver>
             {
-                new Driver("Max", 23, "Red bull") { Id = 1},
-                new Driver("Lewis", 34, "Mercedes") { Id = 2}
+                Max,
+                Lewis,
             };
         }
 

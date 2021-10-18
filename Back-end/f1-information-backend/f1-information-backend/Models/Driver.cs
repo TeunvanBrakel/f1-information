@@ -8,15 +8,15 @@ namespace f1_information_backend.Models
     public class Driver
     {
         public int Id { get; set; }
-        private string name;
-        private int age;
-        private string currentTeam;
+        public string Name { get; }
+        public int Age { get; set; }
+        public string CurrentTeam { get; set; }
 
         public Driver(string _name, int _age, string _currentTeam)
         {
-            name = _name;
-            age = _age;
-            currentTeam = _currentTeam;
+            Name = _name;
+            Age = _age;
+            CurrentTeam = _currentTeam;
         }
     }
 }

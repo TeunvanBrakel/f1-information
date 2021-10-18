@@ -17,17 +17,17 @@ export class AppComponent {
   
   constructor(private http: HttpClient){
     data = this.GetDrivers();
+    console.log(data);
     // console.log( data);
   }
   public async GetDrivers() {
     var testdata = [];
-    var test =await this.http.get('http://localhost:5000/weatherforecast').forEach(value => testdata.push(value) && console.log(value));
+    var test =await this.http.get('https://localhost:44381/driver').forEach(value => testdata.push(value) && console.log(value));
+    var test =await this.http.get<any>('https://localhost:44381/driver').forEach(value => testdata = value.valueOf());
     console.log(testdata.length)
-    for(i=0; i < testdata.length; i++){
-        console.log(i);
-    }
     console.log();
-    return this.http.get('http://localhost:5000/weatherforecast').forEach(value => testdata.push(value));
+    
+    return await this.http.get<any>('https://localhost:44381/driver').forEach(value => testdata = value.valueOf());
   }
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
