@@ -5,6 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 var data = undefined;
 
+var i = 0;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,10 +19,15 @@ export class AppComponent {
     data = this.GetDrivers();
     // console.log( data);
   }
-  public GetDrivers() {
-    var test = this.http.get('http://localhost:5000/weatherforecast').subscribe(value => data = value)
-    console.log(this.http.get('http://localhost:5000/weatherforecast').subscribe(value => value.toString()));
-    return test;
+  public async GetDrivers() {
+    var testdata = [];
+    var test =await this.http.get('http://localhost:5000/weatherforecast').forEach(value => testdata.push(value) && console.log(value));
+    console.log(testdata.length)
+    for(i=0; i < testdata.length; i++){
+        console.log(i);
+    }
+    console.log();
+    return this.http.get('http://localhost:5000/weatherforecast').forEach(value => testdata.push(value));
   }
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
