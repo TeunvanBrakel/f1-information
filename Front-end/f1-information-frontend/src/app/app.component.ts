@@ -21,12 +21,11 @@ export class AppComponent {
     // console.log( data);
   }
   public async GetDrivers() {
-    var testdata = [];
-    var test =await this.http.get('https://localhost:44381/driver').forEach(value => testdata.push(value) && console.log(value));
+    var testdata: any[] = new Array;
     var test =await this.http.get<any>('https://localhost:44381/driver').forEach(value => testdata = value.valueOf());
     console.log(testdata.length)
-    console.log();
-    
+    testdata.forEach(i => console.log(i));
+    testdata.forEach(i => console.log(i.name));
     return await this.http.get<any>('https://localhost:44381/driver').forEach(value => testdata = value.valueOf());
   }
   httpOptions = {
