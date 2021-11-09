@@ -12,8 +12,8 @@ namespace f1_information_backend.Services
         static int nextId = 3;
         static DriverService()
         {
-            Driver Max = new Driver("Max", 23, "Red bull") { Id = 1 };
-            Driver Lewis = new Driver("Lewis", 34, "Mercedes") { Id = 2 };
+            Driver Max = new Driver("Max", 23, "Red bull", "https://www.formula1.com/content/fom-website/en/drivers/max-verstappen/_jcr_content/image.img.640.medium.jpg/1617101447981.jpg", 423, 19, 14) { Id = 1 };
+            Driver Lewis = new Driver("Lewis", 34, "Mercedes", "https://cdn-9.motorsport.com/images/mgl/6xEDbp10/s8/lewis-hamilton-mercedes-1.jpg", 394, 100, 102) { Id = 2 };
             Drivers = new List<Driver>
             {
                 Max,
