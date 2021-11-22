@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DriverInfoComponent } from './driver-info/driver-info.component';
 import { RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DriverInfoComponent
+    DriverInfoComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
