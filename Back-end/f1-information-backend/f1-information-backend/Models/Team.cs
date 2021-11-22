@@ -7,16 +7,20 @@ namespace f1_information_backend.Models
 {
     public class Team
     {
-        public int Team_id { get; set; }
-        private string teamName;
-        private int wins;
-        private int points;
+        public int Id { get; set; }
+        public string TeamName { get; private set; }
+        public int Wins { get; private set; }
+        public int Points { get; private set; }
 
         public Team(string _teamName, int _wins, int _points)
         {
-            teamName = _teamName;
-            wins = _wins;
-            points = _points;
+            TeamName = _teamName;
+            Wins = _wins;
+            Points = _points;
+        }
+        public Team()
+        {
+
         }
     }
 }

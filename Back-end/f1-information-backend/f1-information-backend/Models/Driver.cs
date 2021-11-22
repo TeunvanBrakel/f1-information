@@ -8,13 +8,13 @@ namespace f1_information_backend.Models
     public class Driver
     {
         public int Id { get; set; }
-        public string Name { get; }
-        public int Age { get; set; }
-        public string CurrentTeam { get; set; }
-        public int CurrentPoints { get; set; }
-        public int Wins { get; set; }
-        public int PolePositions { get; set; }
-        public string Image { get; set; }
+        public string Name { get; private set; }
+        public int Age { get; private set; }
+        public string CurrentTeam { get; private set; }
+        public int CurrentPoints { get; private set; }
+        public int Wins { get; private set; }
+        public int PolePositions { get; private set; }
+        public string Image { get; private set; }
 
         public Driver(string _name, int _age, string _currentTeam, string _image, int _currentPoints, int _wins, int _polePositions)
         {
@@ -25,6 +25,14 @@ namespace f1_information_backend.Models
             CurrentPoints = _currentPoints;
             Wins = _wins;
             PolePositions = _polePositions;
+        }
+        public Driver()
+        {
+
+        }
+        private int[] test = new int[100];
+        public void Test()
+        {
         }
     }
 }

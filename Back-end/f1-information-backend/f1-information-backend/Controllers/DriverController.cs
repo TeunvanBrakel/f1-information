@@ -12,27 +12,46 @@ namespace f1_information_backend.Controllers
     [Route("[controller]")]
     public class DriverController
     {
-        public DriverController()
+        private readonly DriverService driverService;
+        public DriverController(DriverService service)
         {
+            driverService = service;
         }
 
         [HttpGet]
         public ActionResult<List<Driver>> GetAll() =>
-            DriverService.GetAll();
+            driverService.GetAll();
 
         [HttpGet("{id}")]
         public ActionResult<Driver> Get(int id)
         {
-            var driver = DriverService.Get(id);
+            var driver = driverService.Get(id);
 
             if (driver == null)
                 return null;
 
             return driver;
         }
-
+        [HttpPost]
+        public async void CreateDriver(Driver driver)
+        {
+            if(driver != null)
+            {
+                await driverService.Add(driver);
+            }
+        }
         // POST action
 
+        [HttpPut("{id}")]
+        public ActionResult Update(int id, Driver driver)
+        {
+            if(driver.Id == id)
+            {
+                driverService.Update(driver);
+                return new OkResult();
+            }
+            return new BadRequestResult();
+        }
         // PUT action
 
         // DELETE action

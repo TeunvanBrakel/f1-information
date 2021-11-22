@@ -7,14 +7,18 @@ namespace f1_information_backend.Models
 {
     public class Result
     {
-        public int Result_id { get; set; }
-        private int driverFinished;
-        private int points;
+        public int Id { get; set; }
+        public int DriverFinished { get; private set; }
+        public int Points { get; private set; }
 
         public Result(int _driverFinished, int _points)
         {
-            driverFinished = _driverFinished;
-            points = _points;
+            DriverFinished = _driverFinished;
+            Points = _points;
+        }
+        public Result()
+        {
+
         }
     }
 }

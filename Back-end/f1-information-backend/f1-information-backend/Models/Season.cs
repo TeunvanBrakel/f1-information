@@ -7,18 +7,22 @@ namespace f1_information_backend.Models
 {
     public class Season
     {
-        public int Season_id { get; set; }
-        private int year;
-        private int numberOfRaces;
-        private string[] driverStandings;
-        private string[] constructorStandings;
+        public int Id { get; set; }
+        public int Year { get; private set; }
+        public int NumberOfRaces { get; private set; }
+        public string DriverStandings { get; private set; }
+        public string ConstructorStandings { get; private set; }
 
-        public Season(int _year, int _numberOfRaces, string[] _driverStandings, string[] _constructorStandings)
+        public Season(int _year, int _numberOfRaces, string _driverStandings, string _constructorStandings)
         {
-            year = _year;
-            numberOfRaces = _numberOfRaces;
-            driverStandings = _driverStandings;
-            constructorStandings = _constructorStandings;
+            Year = _year;
+            NumberOfRaces = _numberOfRaces;
+            DriverStandings = _driverStandings;
+            ConstructorStandings = _constructorStandings;
+        }
+        public Season()
+        {
+
         }
     }
 }
