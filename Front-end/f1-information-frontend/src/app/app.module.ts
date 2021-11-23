@@ -1,20 +1,25 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { AppComponent } from './app.component';
+import { MdbModule } from 'mdb-angular-ui-kit';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomeComponent } from './home/home.component';
+import { DriverInfoComponent } from './driver-info/driver-info.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { DriverInfoComponent } from './driver-info/driver-info.component';
 import { RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DriverInfoComponent,
-    HomeComponent
+    HomeComponent,
+    DriverInfoComponent
   ],
+
   imports: [
     BrowserModule,
+    MdbModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     RouterModule.forRoot([
