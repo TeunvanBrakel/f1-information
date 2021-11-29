@@ -12,6 +12,8 @@ namespace f1_information_backend.Models
         public int Wins { get; private set; }
         public int Points { get; private set; }
 
+        public ICollection<Driver> currentDrivers { get; private set; }
+
         public Team(string _teamName, int _wins, int _points)
         {
             TeamName = _teamName;

@@ -19,7 +19,6 @@ namespace f1_information_backend.Migrations
             modelBuilder.Entity("f1_information_backend.Models.Driver", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<int>("Age")
@@ -132,6 +131,22 @@ namespace f1_information_backend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Teams");
+                });
+
+            modelBuilder.Entity("f1_information_backend.Models.Driver", b =>
+                {
+                    b.HasOne("f1_information_backend.Models.Team", "Team")
+                        .WithMany("currentDrivers")
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Team");
+                });
+
+            modelBuilder.Entity("f1_information_backend.Models.Team", b =>
+                {
+                    b.Navigation("currentDrivers");
                 });
 #pragma warning restore 612, 618
         }

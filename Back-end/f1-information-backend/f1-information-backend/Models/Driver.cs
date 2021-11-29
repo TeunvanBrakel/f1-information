@@ -16,7 +16,9 @@ namespace f1_information_backend.Models
         public int PolePositions { get; private set; }
         public string Image { get; private set; }
 
-        public Driver(string _name, int _age, string _currentTeam, string _image, int _currentPoints, int _wins, int _polePositions)
+        public Team Team { get; private set; }
+
+        public Driver(string _name, int _age, string _currentTeam, string _image, int _currentPoints, int _wins, int _polePositions, Team team)
         {
             Name = _name;
             Age = _age;
@@ -25,6 +27,7 @@ namespace f1_information_backend.Models
             CurrentPoints = _currentPoints;
             Wins = _wins;
             PolePositions = _polePositions;
+            Team = team;
         }
         public Driver()
         {

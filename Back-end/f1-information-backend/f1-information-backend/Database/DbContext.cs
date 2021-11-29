@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace f1_information_backend.Database
 {
-    public class DbContext:  Microsoft.EntityFrameworkCore.DbContext
+    public class DbContext : Microsoft.EntityFrameworkCore.DbContext
     {
         public DbContext(DbContextOptions<DbContext> options) : base(options)
         {
@@ -19,5 +19,14 @@ namespace f1_information_backend.Database
         public DbSet<Season> Seasons { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<Result> Results { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Team>()
+                .HasMany(a => a.currentDrivers)
+                .WithOne(b => b.Team)
+                .HasForeignKey(b => b.Id);
+
+        }
     }
 }

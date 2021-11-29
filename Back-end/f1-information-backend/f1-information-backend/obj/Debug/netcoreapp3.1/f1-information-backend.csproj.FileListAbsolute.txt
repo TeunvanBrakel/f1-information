@@ -49,3 +49,11 @@ C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\
 C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\Back-end\f1-information-backend\f1-information-backend\bin\Debug\netcoreapp3.1\ZstdNet.dll
 C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\Back-end\f1-information-backend\f1-information-backend\bin\Debug\netcoreapp3.1\MySql.EntityFrameworkCore.dll
 C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\Back-end\f1-information-backend\f1-information-backend\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\Back-end\f1-information-backend\f1-information-backend\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\Back-end\f1-information-backend\f1-information-backend\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll
+C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\Back-end\f1-information-backend\f1-information-backend\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\Back-end\f1-information-backend\f1-information-backend\bin\Debug\netcoreapp3.1\NPOI.OOXML.dll
+C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\Back-end\f1-information-backend\f1-information-backend\bin\Debug\netcoreapp3.1\NPOI.OpenXml4Net.dll
+C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\Back-end\f1-information-backend\f1-information-backend\bin\Debug\netcoreapp3.1\NPOI.OpenXmlFormats.dll
+C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\Back-end\f1-information-backend\f1-information-backend\bin\Debug\netcoreapp3.1\NPOI.dll
+C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\Back-end\f1-information-backend\f1-information-backend\bin\Debug\netcoreapp3.1\ICSharpCode.SharpZipLib.dll

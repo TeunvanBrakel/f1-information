@@ -8,12 +8,14 @@ import { DriverInfoComponent } from './driver-info/driver-info.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
+import { AllDriversComponent } from './all-drivers/all-drivers.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    DriverInfoComponent
+    DriverInfoComponent,
+    AllDriversComponent,
   ],
 
   imports: [

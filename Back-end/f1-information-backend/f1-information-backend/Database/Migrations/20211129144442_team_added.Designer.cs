@@ -8,8 +8,8 @@ using f1_information_backend.Database;
 namespace f1_information_backend.Migrations
 {
     [DbContext(typeof(Database.DbContext))]
-    [Migration("20211109132032_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20211129144442_team_added")]
+    partial class team_added
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,6 @@ namespace f1_information_backend.Migrations
             modelBuilder.Entity("f1_information_backend.Models.Driver", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<int>("Age")
@@ -134,6 +133,22 @@ namespace f1_information_backend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Teams");
+                });
+
+            modelBuilder.Entity("f1_information_backend.Models.Driver", b =>
+                {
+                    b.HasOne("f1_information_backend.Models.Team", "Team")
+                        .WithMany("currentDrivers")
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Team");
+                });
+
+            modelBuilder.Entity("f1_information_backend.Models.Team", b =>
+                {
+                    b.Navigation("currentDrivers");
                 });
 #pragma warning restore 612, 618
         }

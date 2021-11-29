@@ -3,29 +3,10 @@ using MySql.EntityFrameworkCore.Metadata;
 
 namespace f1_information_backend.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class team_added : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Drivers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "text", nullable: true),
-                    Age = table.Column<int>(type: "int", nullable: false),
-                    CurrentTeam = table.Column<string>(type: "text", nullable: true),
-                    CurrentPoints = table.Column<int>(type: "int", nullable: false),
-                    Wins = table.Column<int>(type: "int", nullable: false),
-                    PolePositions = table.Column<int>(type: "int", nullable: false),
-                    Image = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Drivers", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Races",
                 columns: table => new
@@ -86,6 +67,30 @@ namespace f1_information_backend.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Teams", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Drivers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    Age = table.Column<int>(type: "int", nullable: false),
+                    CurrentTeam = table.Column<string>(type: "text", nullable: true),
+                    CurrentPoints = table.Column<int>(type: "int", nullable: false),
+                    Wins = table.Column<int>(type: "int", nullable: false),
+                    PolePositions = table.Column<int>(type: "int", nullable: false),
+                    Image = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Drivers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Drivers_Teams_Id",
+                        column: x => x.Id,
+                        principalTable: "Teams",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
         }
 
