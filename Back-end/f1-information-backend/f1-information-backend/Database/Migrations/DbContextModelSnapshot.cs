@@ -65,12 +65,39 @@ namespace f1_information_backend.Migrations
                     b.Property<int>("RaceNumber")
                         .HasColumnType("int");
 
-                    b.Property<int>("Season")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("Races");
+                });
+
+            modelBuilder.Entity("f1_information_backend.Models.RaceDrivers", b =>
+                {
+                    b.Property<int>("RaceId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DriverId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RaceId", "DriverId");
+
+                    b.HasIndex("DriverId");
+
+                    b.ToTable("RaceDrivers");
+                });
+
+            modelBuilder.Entity("f1_information_backend.Models.RaceSeason", b =>
+                {
+                    b.Property<int>("SeasonId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RaceId")
+                        .HasColumnType("int");
+
+                    b.HasKey("SeasonId", "RaceId");
+
+                    b.HasIndex("RaceId");
+
+                    b.ToTable("RaceSeasons");
                 });
 
             modelBuilder.Entity("f1_information_backend.Models.Result", b =>
@@ -142,6 +169,61 @@ namespace f1_information_backend.Migrations
                         .IsRequired();
 
                     b.Navigation("Team");
+                });
+
+            modelBuilder.Entity("f1_information_backend.Models.RaceDrivers", b =>
+                {
+                    b.HasOne("f1_information_backend.Models.Driver", "Driver")
+                        .WithMany("Races")
+                        .HasForeignKey("DriverId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("f1_information_backend.Models.Race", "Race")
+                        .WithMany("Drivers")
+                        .HasForeignKey("RaceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Driver");
+
+                    b.Navigation("Race");
+                });
+
+            modelBuilder.Entity("f1_information_backend.Models.RaceSeason", b =>
+                {
+                    b.HasOne("f1_information_backend.Models.Race", "Race")
+                        .WithMany("Seasons")
+                        .HasForeignKey("RaceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("f1_information_backend.Models.Season", "Season")
+                        .WithMany("Races")
+                        .HasForeignKey("SeasonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Race");
+
+                    b.Navigation("Season");
+                });
+
+            modelBuilder.Entity("f1_information_backend.Models.Driver", b =>
+                {
+                    b.Navigation("Races");
+                });
+
+            modelBuilder.Entity("f1_information_backend.Models.Race", b =>
+                {
+                    b.Navigation("Drivers");
+
+                    b.Navigation("Seasons");
+                });
+
+            modelBuilder.Entity("f1_information_backend.Models.Season", b =>
+                {
+                    b.Navigation("Races");
                 });
 
             modelBuilder.Entity("f1_information_backend.Models.Team", b =>

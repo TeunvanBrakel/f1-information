@@ -34,6 +34,12 @@ namespace f1_information_backend.Services
                 await Add(Drivers[0]);
                 await Add(Drivers[1]);
             }
+            RaceDrivers raceDrivers = new RaceDrivers();
+            Race qatar = new Race("Qatar", "Jeddah", 23, "qatar international f1 race");
+            raceDrivers.Race = context.Races.Find(1);
+            raceDrivers.Driver = context.Drivers.Find(1);
+            context.RaceDrivers.Add(raceDrivers);
+            await context.SaveChangesAsync();
         }
 
         public List<Driver> GetAll()

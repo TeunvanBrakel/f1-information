@@ -12,6 +12,7 @@ namespace f1_information_backend.Models
         public int NumberOfRaces { get; private set; }
         public string DriverStandings { get; private set; }
         public string ConstructorStandings { get; private set; }
+        public ICollection<RaceSeason> Races { get; set; }
 
         public Season(int _year, int _numberOfRaces, string _driverStandings, string _constructorStandings)
         {

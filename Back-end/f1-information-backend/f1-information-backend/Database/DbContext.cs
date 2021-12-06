@@ -19,6 +19,8 @@ namespace f1_information_backend.Database
         public DbSet<Season> Seasons { get; set; }
         public DbSet<Team> Teams { get; set; }
         public DbSet<Result> Results { get; set; }
+        public DbSet<RaceSeason> RaceSeasons { get; set; }
+        public DbSet<RaceDrivers> RaceDrivers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,6 +29,57 @@ namespace f1_information_backend.Database
                 .WithOne(b => b.Team)
                 .HasForeignKey(b => b.Id);
 
+            modelBuilder.Entity<RaceSeason>()
+                .HasKey(rs => new { rs.SeasonId, rs.RaceId });
+
+            modelBuilder.Entity<RaceSeason>()
+                .HasOne(rs => rs.Race)
+                .WithMany(r => r.Seasons)
+                .HasForeignKey(rs => rs.RaceId);
+
+            modelBuilder.Entity<RaceSeason>()
+                .HasOne(rs => rs.Season)
+                .WithMany(s => s.Races)
+                .HasForeignKey(rs => rs.SeasonId);
+
+            modelBuilder.Entity<RaceDrivers>()
+                .HasKey(rd => new { rd.RaceId, rd.DriverId });
+
+            modelBuilder.Entity<RaceDrivers>()
+                .HasOne(rd => rd.Race)
+                .WithMany(r => r.Drivers)
+                .HasForeignKey(rd => rd.RaceId);
+
+            modelBuilder.Entity<RaceDrivers>()
+                .HasOne(rd => rd.Driver)
+                .WithMany(d => d.Races)
+                .HasForeignKey(rd => rd.DriverId);
+
+            modelBuilder.Entity<RaceResult>()
+                .HasKey(rr => new { rr.RaceId, rr.ResultId });
+
+            modelBuilder.Entity<RaceResult>()
+                .HasOne(rr => rr.Race)
+                .WithMany(ra => ra.Results)
+                .HasForeignKey(rr => rr.RaceId);
+
+            modelBuilder.Entity<RaceResult>()
+                .HasOne(rr => rr.Result)
+                .WithMany(re => re.Races)
+                .HasForeignKey(rr => rr.ResultId);
+
+            modelBuilder.Entity<RaceFavorites>()
+                .HasKey(rf => new { rf.RaceId, rf.FavoriteRacesId });
+
+            modelBuilder.Entity<RaceFavorites>()
+                .HasOne(rf => rf.Race)
+                .WithMany(r => r.FavoriteRaces)
+                .HasForeignKey(rf => rf.RaceId);
+
+            modelBuilder.Entity<RaceFavorites>()
+                .HasOne(rf => rf.FavoriteRaces)
+                .WithMany(f => f.Races)
+                .HasForeignKey(rf => rf.FavoriteRacesId);
         }
     }
 }

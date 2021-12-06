@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   styleUrls: ['./driver-info.component.scss']
 })
 export class DriverInfoComponent implements OnInit {
-  private driver: any = new Object;
+  driver: any = new Object;
   id: number = 0;
   constructor(
     private http: HttpClient,

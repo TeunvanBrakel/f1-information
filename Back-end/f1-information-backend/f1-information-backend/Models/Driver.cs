@@ -17,6 +17,7 @@ namespace f1_information_backend.Models
         public string Image { get; private set; }
 
         public Team Team { get; private set; }
+        public ICollection<RaceDrivers> Races { get; set; }
 
         public Driver(string _name, int _age, string _currentTeam, string _image, int _currentPoints, int _wins, int _polePositions, Team team)
         {

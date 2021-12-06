@@ -6,7 +6,6 @@ C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\
 C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\Back-end\f1-information-backend\f1-information-backend\bin\Debug\netcoreapp3.1\f1-information-backend.runtimeconfig.dev.json
 C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\Back-end\f1-information-backend\f1-information-backend\bin\Debug\netcoreapp3.1\f1-information-backend.dll
 C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\Back-end\f1-information-backend\f1-information-backend\bin\Debug\netcoreapp3.1\f1-information-backend.pdb
-C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\Back-end\f1-information-backend\f1-information-backend\obj\Debug\netcoreapp3.1\f1-information-backend.csprojAssemblyReference.cache
 C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\Back-end\f1-information-backend\f1-information-backend\obj\Debug\netcoreapp3.1\f1-information-backend.AssemblyInfoInputs.cache
 C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\Back-end\f1-information-backend\f1-information-backend\obj\Debug\netcoreapp3.1\f1-information-backend.AssemblyInfo.cs
 C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\Back-end\f1-information-backend\f1-information-backend\obj\Debug\netcoreapp3.1\f1-information-backend.csproj.CoreCompileInputs.cache
@@ -57,3 +56,5 @@ C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\
 C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\Back-end\f1-information-backend\f1-information-backend\bin\Debug\netcoreapp3.1\NPOI.OpenXmlFormats.dll
 C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\Back-end\f1-information-backend\f1-information-backend\bin\Debug\netcoreapp3.1\NPOI.dll
 C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\Back-end\f1-information-backend\f1-information-backend\bin\Debug\netcoreapp3.1\ICSharpCode.SharpZipLib.dll
+C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\Back-end\f1-information-backend\f1-information-backend\obj\Debug\netcoreapp3.1\f1-information-backend.csproj.AssemblyReference.cache
+C:\Users\teunv\OneDrive\Documenten\Fontys\Semester 3\Individueel\f1-information\Back-end\f1-information-backend\f1-information-backend\obj\Debug\netcoreapp3.1\f1-information-backend.GeneratedMSBuildEditorConfig.editorconfig

@@ -3,7 +3,7 @@ using MySql.EntityFrameworkCore.Metadata;
 
 namespace f1_information_backend.Migrations
 {
-    public partial class team_added : Migration
+    public partial class relations_added : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,6 @@ namespace f1_information_backend.Migrations
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Country = table.Column<string>(type: "text", nullable: true),
                     Circuit = table.Column<string>(type: "text", nullable: true),
-                    Season = table.Column<int>(type: "int", nullable: false),
                     RaceNumber = table.Column<int>(type: "int", nullable: false),
                     RaceName = table.Column<string>(type: "text", nullable: true)
                 },
@@ -70,6 +69,30 @@ namespace f1_information_backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RaceSeasons",
+                columns: table => new
+                {
+                    SeasonId = table.Column<int>(type: "int", nullable: false),
+                    RaceId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RaceSeasons", x => new { x.SeasonId, x.RaceId });
+                    table.ForeignKey(
+                        name: "FK_RaceSeasons_Races_RaceId",
+                        column: x => x.RaceId,
+                        principalTable: "Races",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RaceSeasons_Seasons_SeasonId",
+                        column: x => x.SeasonId,
+                        principalTable: "Seasons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Drivers",
                 columns: table => new
                 {
@@ -92,18 +115,58 @@ namespace f1_information_backend.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "RaceDrivers",
+                columns: table => new
+                {
+                    RaceId = table.Column<int>(type: "int", nullable: false),
+                    DriverId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RaceDrivers", x => new { x.RaceId, x.DriverId });
+                    table.ForeignKey(
+                        name: "FK_RaceDrivers_Drivers_DriverId",
+                        column: x => x.DriverId,
+                        principalTable: "Drivers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RaceDrivers_Races_RaceId",
+                        column: x => x.RaceId,
+                        principalTable: "Races",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RaceDrivers_DriverId",
+                table: "RaceDrivers",
+                column: "DriverId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RaceSeasons_RaceId",
+                table: "RaceSeasons",
+                column: "RaceId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "RaceDrivers");
+
+            migrationBuilder.DropTable(
+                name: "RaceSeasons");
+
+            migrationBuilder.DropTable(
+                name: "Results");
+
+            migrationBuilder.DropTable(
                 name: "Drivers");
 
             migrationBuilder.DropTable(
                 name: "Races");
-
-            migrationBuilder.DropTable(
-                name: "Results");
 
             migrationBuilder.DropTable(
                 name: "Seasons");
