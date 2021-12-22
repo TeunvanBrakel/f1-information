@@ -4,6 +4,8 @@ using System.Linq;
 using f1_information_backend.Models;
 using System.Threading.Tasks;
 using f1_information_backend.Database;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace f1_information_backend.Services
 {
@@ -11,6 +13,7 @@ namespace f1_information_backend.Services
     {
         private readonly DbContext context;
         private List<Driver> Drivers { get; }
+        static HttpClient client = new HttpClient();
         public DriverService(DbContext dbContext)
         {
             context = dbContext;
@@ -29,17 +32,28 @@ namespace f1_information_backend.Services
         }
         private async void Test()
         {
+            
             if (context.Drivers.Count() < 2)
             {
                 await Add(Drivers[0]);
                 await Add(Drivers[1]);
             }
-            RaceDrivers raceDrivers = new RaceDrivers();
+            Driver test = new Driver();
+            HttpResponseMessage response = await client.GetAsync("http://ergast.com/api/f1/drivers/alonso.JSON");
+            if (response.IsSuccessStatusCode)
+            {
+                dynamic test123 = await response.Content.ReadAsStringAsync();
+                test123 = JsonConvert.DeserializeObject<object>(test123);
+                Console.WriteLine(test123.MRData);
+                string test4556 = JsonConvert.SerializeObject(test123.MRData.DriverTable.Drivers[0]);
+                test = JsonConvert.DeserializeObject<Driver>(test4556);
+            }
+            /*RaceDrivers raceDrivers = new RaceDrivers();
             Race qatar = new Race("Qatar", "Jeddah", 23, "qatar international f1 race");
             raceDrivers.Race = context.Races.Find(1);
             raceDrivers.Driver = context.Drivers.Find(1);
             context.RaceDrivers.Add(raceDrivers);
-            await context.SaveChangesAsync();
+            await context.SaveChangesAsync();*/
         }
 
         public List<Driver> GetAll()

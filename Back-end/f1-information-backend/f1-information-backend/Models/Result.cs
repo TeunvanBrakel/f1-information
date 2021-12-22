@@ -12,6 +12,7 @@ namespace f1_information_backend.Models
         public int Points { get; private set; }
 
         public ICollection<RaceResult> Races { get; set; }
+        public ICollection<DriverResult> Drivers { get; set; }
 
         public Result(int _driverFinished, int _points)
         {

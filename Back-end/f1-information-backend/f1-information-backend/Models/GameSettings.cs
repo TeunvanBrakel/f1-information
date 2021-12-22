@@ -13,6 +13,8 @@ namespace f1_information_backend.Models
         public string QualyGuess { get; private set;  }
         public int Points { get; private set; }
 
+        public ICollection<User> User { get; set; }
+
         public GameSettings()
         {
 

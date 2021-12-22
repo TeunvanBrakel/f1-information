@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using f1_information_backend.Database;
 
 namespace f1_information_backend.Migrations
 {
     [DbContext(typeof(Database.DbContext))]
-    partial class DbContextModelSnapshot : ModelSnapshot
+    [Migration("20211210085910_Driver_change")]
+    partial class Driver_change
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

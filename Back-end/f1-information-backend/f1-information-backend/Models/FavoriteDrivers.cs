@@ -11,6 +11,8 @@ namespace f1_information_backend.Models
         public int DriverId { get; private set; }
         public int UserId { get; private set; }
 
+        public ICollection<DriverFavorites> Drivers { get; set; }
+
         public FavoriteDrivers()
         {
 

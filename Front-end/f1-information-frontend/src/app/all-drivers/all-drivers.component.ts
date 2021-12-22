@@ -9,6 +9,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class AllDriversComponent implements OnInit {
   drivers: [];
+  test: [];
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -24,6 +25,8 @@ export class AllDriversComponent implements OnInit {
   private async GetAllDriver() {
     await this.http.get<any>('https://localhost:44381/driver').forEach(value => this.drivers = value.valueOf());
     console.log(this.drivers);
+    await this.http.get<any>('https://ergast.com/api/f1/2021/drivers.JSON').forEach(value => this.test = value.valueOf());
+    //console.log(this.test.MRData.DriverTable);
   }
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })

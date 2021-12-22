@@ -69,17 +69,48 @@ namespace f1_information_backend.Database
                 .HasForeignKey(rr => rr.ResultId);
 
             modelBuilder.Entity<RaceFavorites>()
-                .HasKey(rf => new { rf.RaceId, rf.FavoriteRacesId });
+                .HasKey(rf => new { rf.RaceId, rf.UserId });
 
             modelBuilder.Entity<RaceFavorites>()
                 .HasOne(rf => rf.Race)
-                .WithMany(r => r.FavoriteRaces)
+                .WithMany(r => r.RaceFavoritesUser)
                 .HasForeignKey(rf => rf.RaceId);
 
             modelBuilder.Entity<RaceFavorites>()
-                .HasOne(rf => rf.FavoriteRaces)
-                .WithMany(f => f.Races)
-                .HasForeignKey(rf => rf.FavoriteRacesId);
+                .HasOne(rf => rf.User)
+                .WithMany(u => u.RaceFavorites)
+                .HasForeignKey(rf => rf.UserId);
+
+            modelBuilder.Entity<DriverFavorites>()
+                .HasKey(df => new { df.DriverId, df.UserId });
+
+            modelBuilder.Entity<DriverFavorites>()
+                .HasOne(df => df.Driver)
+                .WithMany(d => d.FavoritesUser)
+                .HasForeignKey(df => df.DriverId);
+
+            modelBuilder.Entity<DriverFavorites>()
+                .HasOne(df => df.User)
+                .WithMany(u => u.DriverFavorites)
+                .HasForeignKey(df => df.UserId);
+
+            modelBuilder.Entity<DriverResult>()
+                .HasKey(dr => new { dr.DriverId, dr.ResultId });
+
+            modelBuilder.Entity<DriverResult>()
+                .HasOne(dr => dr.Result)
+                .WithMany(r => r.Drivers)
+                .HasForeignKey(dr => dr.ResultId);
+
+            modelBuilder.Entity<DriverResult>()
+                .HasOne(dr => dr.Driver)
+                .WithMany(d => d.Results)
+                .HasForeignKey(dr => dr.DriverId);
+
+            modelBuilder.Entity<GameSettings>()
+                .HasMany(g => g.User)
+                .WithOne(u => u.GameSettings)
+                .HasForeignKey(u => u.GameSettingsId);
         }
     }
 }

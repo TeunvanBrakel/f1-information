@@ -16,7 +16,7 @@ namespace f1_information_backend.Models
         public ICollection<RaceSeason> Seasons { get; set; }
         public ICollection<RaceDrivers> Drivers { get; set; }
         public ICollection<RaceResult> Results { get; set; }
-        public ICollection<FavoriteRaces> FavoriteRaces { get; set; }
+        public ICollection<RaceFavorites> RaceFavoritesUser { get; set; }
 
         public Race(string _country, string _circuit, int _raceNumber, string _raceName)
         {

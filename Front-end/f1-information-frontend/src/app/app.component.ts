@@ -26,4 +26,11 @@ export class AppComponent {
       this.loginPage = false;
     }
   }
+  public RegisterNewUser(){
+    console.log("test");
+  }
+
+  public LoginUser(){
+    console.log("123");
+  }
 }
