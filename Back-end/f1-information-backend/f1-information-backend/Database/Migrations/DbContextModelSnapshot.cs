@@ -271,6 +271,9 @@ namespace f1_information_backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
                     b.Property<int>("GameSettingsId")
                         .HasColumnType("int");
 
@@ -284,7 +287,7 @@ namespace f1_information_backend.Migrations
 
                     b.HasIndex("GameSettingsId");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("f1_information_backend.Models.Driver", b =>

@@ -21,6 +21,7 @@ namespace f1_information_backend.Database
         public DbSet<Result> Results { get; set; }
         public DbSet<RaceSeason> RaceSeasons { get; set; }
         public DbSet<RaceDrivers> RaceDrivers { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

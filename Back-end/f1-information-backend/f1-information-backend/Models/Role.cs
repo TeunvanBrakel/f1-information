@@ -15,7 +15,7 @@ namespace f1_information_backend.Models
     {
         public int id { get; set; }
         public roles name { get; set; }
-        public ICollection<UserRole> User { get; set; }
+        //public ICollection<UserRole> User { get; set; }
         public Role()
         {
 

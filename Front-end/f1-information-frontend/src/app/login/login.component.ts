@@ -28,12 +28,13 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void{
     const { username, password } = this.form;
-
+    //console.log(this.authService.login(username, password));
     this.authService.login(username, password).subscribe(
       data =>{
+        console.log(data.text);
         this.tokenStorage.saveToken(data.accessToken);
         this.tokenStorage.saveUser(data);
-
+        console.log(this.tokenStorage);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.roles = this.tokenStorage.getUser().roles;
