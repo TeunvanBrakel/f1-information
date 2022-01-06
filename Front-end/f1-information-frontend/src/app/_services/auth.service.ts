@@ -5,7 +5,8 @@ import { Observable } from 'rxjs';
 const AUTH_API = 'https://localhost:44381/api/Token/';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+  headers: new HttpHeaders({ 'Content-Type': 'application/json'}),
+  responseType: 'text' as const
 };
 
 @Injectable({

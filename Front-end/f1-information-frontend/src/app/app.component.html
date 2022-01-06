@@ -1,56 +1,6 @@
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg bg-primary navbar-dark ">
-  <!-- Container wrapper -->
-  <div class="container-fluid">
-
-    <!-- Navbar brand -->
-    <a class="navbar-brand" href="home">Statsf1Gaming</a>
-
-    <!-- Toggle button -->
-    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- Collapsible wrapper -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-
-        <!-- Link -->
-        <li class="nav-item">
-          <a class="nav-link" href="#">Game</a>
-        </li>
-        <div mdbDropdown class="dropdown">
-          <button
-            class="btn btn-primary dropdown-toggle dropdown"
-            type="button"
-            id="dropdownMenuButton"
-            aria-expanded="false"
-            mdbDropdownToggle
-          >
-           Statistics
-          </button>
-          <ul mdbDropdownMenu class="dropdown-menu show" aria-labelledby="dropdownMenuButton">
-            <li><a class="dropdown-item" href="/allDrivers">Drivers</a></li>
-            <li><a class="dropdown-item" href="#">Seasons</a></li>
-            <li><a class="dropdown-item" href="#">Teams</a></li>
-          </ul>
-        </div>
-      </ul>
-
-      <!-- Search -->
-      <form class="w-auto">
-        <input type="search" class="form-control" placeholder="Type query" aria-label="Search">
-      </form>
-
-    </div>
-  </div>
-  <!-- Container wrapper -->
-</nav>
-<!-- Navbar -->
-
 <div id="app">
   <nav class="navbar navbar-expand navbar-dark bg-dark">
-    <a href="#" class="navbar-brand">bezKoder</a>
+    <a href="#" class="navbar-brand">Statsf1Gaming</a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item">
         <a href="/home" class="nav-link" routerLink="home">Home </a>
@@ -64,6 +14,25 @@
       <li class="nav-item">
         <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Game</a>
+      </li>
+      <div mdbDropdown class="dropdown">
+        <button
+          class="btn btn-primary dropdown-toggle dropdown"
+          type="button"
+          id="dropdownMenuButton"
+          aria-expanded="false"
+          mdbDropdownToggle
+        >
+         Statistics
+        </button>
+        <ul mdbDropdownMenu class="dropdown-menu show" aria-labelledby="dropdownMenuButton">
+          <li><a class="dropdown-item" href="/allDrivers">Drivers</a></li>
+          <li><a class="dropdown-item" href="#">Seasons</a></li>
+          <li><a class="dropdown-item" href="#">Teams</a></li>
+        </ul>
+      </div>
     </ul>
 
     <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
