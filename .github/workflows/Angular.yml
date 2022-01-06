@@ -6,23 +6,25 @@ on:
   pull_request:
     branches: [ dev ]
     
+
 jobs:
   build_Angular:
-    
+
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v2
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      - name: Install packages
-        working-directory: Front-end/f1-information-frontend
+      - name: Install angular CLI
+        run: npm install -g @angular/cli
+      - name: install packages
         run: npm install
       - name: Install Dependencies
         working-directory: Front-end/f1-information-frontend
         run: npm ci
       - name: Build
         working-directory: Front-end/f1-information-frontend
-        run: npm run build -- --prod
+        run: ng build -- --prod
