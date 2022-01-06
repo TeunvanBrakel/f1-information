@@ -24,4 +24,4 @@ jobs:
         run: npm install
       - name: Build
         working-directory: Front-end/f1-information-frontend
-        run: ng build -- --prod
+        run: npm run build -- --prod
