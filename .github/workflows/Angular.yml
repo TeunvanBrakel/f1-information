@@ -17,12 +17,12 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      - name: Install packages
-        working-directory: Front-end/f1-information-frontend
-        run: npm install
       - name: Clean cache
         working-directory: Front-end/f1-information-frontend
         run: npm cache clean
+      - name: Install packages
+        working-directory: Front-end/f1-information-frontend
+        run: npm install
       - name: Install Dependencies
         working-directory: Front-end/f1-information-frontend
         run: npm ci
