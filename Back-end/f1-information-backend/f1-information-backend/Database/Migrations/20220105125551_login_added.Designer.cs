@@ -9,8 +9,8 @@ using f1_information_backend.Database;
 namespace f1_information_backend.Migrations
 {
     [DbContext(typeof(Database.DbContext))]
-    [Migration("20211210085910_Driver_change")]
-    partial class Driver_change
+    [Migration("20220105125551_login_added")]
+    partial class login_added
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -273,6 +273,9 @@ namespace f1_information_backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
                     b.Property<int>("GameSettingsId")
                         .HasColumnType("int");
 
@@ -286,7 +289,7 @@ namespace f1_information_backend.Migrations
 
                     b.HasIndex("GameSettingsId");
 
-                    b.ToTable("User");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("f1_information_backend.Models.Driver", b =>

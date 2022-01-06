@@ -4,7 +4,7 @@ using MySql.EntityFrameworkCore.Metadata;
 
 namespace f1_information_backend.Migrations
 {
-    public partial class Driver_change : Migration
+    public partial class login_added : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -86,20 +86,21 @@ namespace f1_information_backend.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     UserName = table.Column<string>(type: "text", nullable: true),
                     PassWord = table.Column<string>(type: "text", nullable: true),
+                    Email = table.Column<string>(type: "text", nullable: true),
                     GameSettingsId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.Id);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_User_GameSettings_GameSettingsId",
+                        name: "FK_Users_GameSettings_GameSettingsId",
                         column: x => x.GameSettingsId,
                         principalTable: "GameSettings",
                         principalColumn: "Id",
@@ -202,9 +203,9 @@ namespace f1_information_backend.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RaceFavorites_User_UserId",
+                        name: "FK_RaceFavorites_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -226,9 +227,9 @@ namespace f1_information_backend.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_DriverFavorites_User_UserId",
+                        name: "FK_DriverFavorites_Users_UserId",
                         column: x => x.UserId,
-                        principalTable: "User",
+                        principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -312,8 +313,8 @@ namespace f1_information_backend.Migrations
                 column: "RaceId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_User_GameSettingsId",
-                table: "User",
+                name: "IX_Users_GameSettingsId",
+                table: "Users",
                 column: "GameSettingsId");
         }
 
@@ -341,7 +342,7 @@ namespace f1_information_backend.Migrations
                 name: "Drivers");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Results");

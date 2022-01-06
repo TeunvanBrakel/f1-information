@@ -11,6 +11,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using f1_information_backend.Database;
 using f1_information_backend.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace f1_information_backend
 {
@@ -28,6 +31,23 @@ namespace f1_information_backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddAuthentication(authOptions =>
+            {
+                authOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                authOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(jwtOptions =>
+            {
+                var key = Configuration.GetValue<string>("JwtConfig:Key");
+                var keyBytes = Encoding.ASCII.GetBytes(key);
+                jwtOptions.SaveToken = true;
+                jwtOptions.TokenValidationParameters = new TokenValidationParameters
+                {
+                    IssuerSigningKey = new SymmetricSecurityKey(keyBytes),
+                    ValidateLifetime = true,
+                    ValidateAudience = false,
+                    ValidateIssuer = false
+                };
+            });
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
@@ -41,6 +61,9 @@ namespace f1_information_backend
                     options.UseMySQL("Server=127.0.0.1;Database=formulaOneInformation;Uid=root;Pwd=;");
                 });
             services.AddScoped<DriverService>();
+            services.AddSingleton(typeof(IJwtTokenManager),typeof(JwtTokenManager));
+            services.AddScoped<Authenticater>();
+            services.AddScoped<UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,7 +77,7 @@ namespace f1_information_backend
             app.UseRouting();
             app.UseCors("CorsPolicy");
             app.UseAuthorization();
-
+            app.UseAuthentication();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

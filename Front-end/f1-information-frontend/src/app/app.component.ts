@@ -1,36 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { TokenStorageService } from './_services/token-storage.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  loginPage: boolean = true;
+export class AppComponent implements OnInit{
+  private roles: string[] = [];
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showModeratorBoard = false;
+  username?: string;
 
-  constructor(
-    private router: Router,
-    ) {}
+  constructor(private tokenStorageService: TokenStorageService) {}
   
   ngOnInit(): void {
-    this.IsCurrentPageLogin();
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+    if (this.isLoggedIn){
+      const user = this.tokenStorageService.getUser();
+      //this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+
+      this.username = user.username;
+    }
   }
 
-  private IsCurrentPageLogin(){
-    console.log(window.location.href)
-    if(window.location.href == "http://localhost:4200/#"){
-      this.loginPage = true;
-    }
-    else{
-      this.loginPage = false;
-    }
+  logout(): void {
+    this.tokenStorageService.signOut();
+    window.location.reload();
   }
-  public RegisterNewUser(){
-    console.log("test");
-  }
-
-  public LoginUser(){
-    console.log("123");
-  }
+  
 }
