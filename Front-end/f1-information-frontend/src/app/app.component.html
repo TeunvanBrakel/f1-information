@@ -17,22 +17,10 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Game</a>
       </li>
-      <div mdbDropdown class="dropdown">
-        <button
-          class="btn btn-primary dropdown-toggle dropdown"
-          type="button"
-          id="dropdownMenuButton"
-          aria-expanded="false"
-          mdbDropdownToggle
-        >
-         Statistics
-        </button>
-        <ul mdbDropdownMenu class="dropdown-menu show" aria-labelledby="dropdownMenuButton">
-          <li><a class="dropdown-item" href="/allDrivers">Drivers</a></li>
-          <li><a class="dropdown-item" href="#">Seasons</a></li>
-          <li><a class="dropdown-item" href="#">Teams</a></li>
-        </ul>
-      </div>
+      <li class="nav-item"><a class="nav-link" href="/allDrivers">Drivers</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Seasons</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Teams</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Statistics</a></li>
     </ul>
 
     <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">

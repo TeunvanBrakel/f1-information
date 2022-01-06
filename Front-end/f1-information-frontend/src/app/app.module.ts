@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { MdbModule } from 'mdb-angular-ui-kit';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -11,14 +10,14 @@ import { HomeComponent } from './home/home.component';
 import { DriverInfoComponent } from './driver-info/driver-info.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AllDriversComponent } from './all-drivers/all-drivers.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
-import { ProfileComponent } from './profile/profile.component';
-import { BoardAdminComponent } from './board-admin/board-admin.component';
-import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
-import { BoardUserComponent } from './board-user/board-user.component';
+import { LoginComponent } from '../app/login/login.component';
+import { RegisterComponent } from '../app/register/register.component';
+import { ProfileComponent } from '../app/profile/profile.component';
+import { BoardAdminComponent } from '../app/board-admin/board-admin.component';
+import { BoardModeratorComponent } from '../app/board-moderator/board-moderator.component';
+import { BoardUserComponent } from '../app/board-user/board-user.component';
 
-import { authInterceptorProviders} from './_helpers/auth.interceptor';
+import { authInterceptorProviders} from '../app/_helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -36,7 +35,6 @@ import { authInterceptorProviders} from './_helpers/auth.interceptor';
 
   imports: [
     BrowserModule,
-    MdbModule,
     BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
