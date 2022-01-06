@@ -22,9 +22,6 @@ jobs:
         run: npm install -g @angular/cli
       - name: install packages
         run: npm install
-      - name: Install Dependencies
-        working-directory: Front-end/f1-information-frontend
-        run: npm ci
       - name: Build
         working-directory: Front-end/f1-information-frontend
-        run: ng build -- --prod
+        run: npm run build -- --prod
