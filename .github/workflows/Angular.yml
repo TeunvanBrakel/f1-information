@@ -18,6 +18,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
+      - name: Install angular CLI
+        run: npm install -g @angular/cli
+      - name: install dependencies
+        run: npm install
       - name: Install packages
         working-directory: Front-end/f1-information-frontend
         run: ng install
