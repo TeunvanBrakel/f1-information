@@ -24,7 +24,7 @@ jobs:
         run: npm install
       - name: Install Dependencies
         working-directory: Front-end/f1-information-frontend
-        run: ng ci
+        run: npm ci
       - name: Build
         working-directory: Front-end/f1-information-frontend
         run: ng build -- --prod
