@@ -20,14 +20,10 @@ jobs:
           node-version: 12.x
       - name: Install angular CLI
         run: npm install -g @angular/cli
-      - name: install dependencies
+      - name: install packages
         run: npm install
-      - name: Install packages
-        working-directory: Front-end/f1-information-frontend
-        run: ng install
       - name: Install Dependencies
-        working-directory: Front-end/f1-information-frontend
-        run: ng ci
+        run: npm ci
       - name: Build
         working-directory: Front-end/f1-information-frontend
         run: ng build -- --prod
