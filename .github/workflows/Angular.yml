@@ -20,6 +20,9 @@ jobs:
       - name: Install packages
         working-directory: Front-end/f1-information-frontend
         run: npm install
+      - name: Clean cache
+        working-directory: Front-end/f1-information-frontend
+        run: npm cache clean
       - name: Install Dependencies
         working-directory: Front-end/f1-information-frontend
         run: npm ci
