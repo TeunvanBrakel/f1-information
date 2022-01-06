@@ -6,29 +6,24 @@ on:
   pull_request:
     branches: [ dev ]
     
-stages:  
-  - stage: 'BuildTest'
-    displayName: 'Build & Test'
-    jobs:
-      build_Angular:
 
-        runs-on: ubuntu-latest
+jobs:
+  build_Angular:
 
-        steps:
-          - uses: actions/checkout@v2
-          - name: Setup Node
-            uses: actions/setup-node@v1
-            with:
-              node-version: 12.x
-          - name: Install packages
-            working-directory: Front-end/f1-information-frontend
-            run: ng install
-          - name: Install Dependencies
-            working-directory: Front-end/f1-information-frontend
-            run: ng ci
-          - name: Build
-            working-directory: Front-end/f1-information-frontend
-            run: ng build -- --prod
-            
-  - stage: 'Deploy'
-    displayName: 'Deploy'
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Install packages
+        working-directory: Front-end/f1-information-frontend
+        run: ng install
+      - name: Install Dependencies
+        working-directory: Front-end/f1-information-frontend
+        run: ng ci
+      - name: Build
+        working-directory: Front-end/f1-information-frontend
+        run: ng build -- --prod
