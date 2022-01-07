@@ -5,11 +5,11 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 @Component({
   selector: 'app-all-drivers',
   templateUrl: './all-drivers.component.html',
-  styleUrls: ['./all-drivers.component.scss']
+  styleUrls: ['./all-drivers.component.css']
 })
 export class AllDriversComponent implements OnInit {
-  drivers: [];
-  test: [];
+  drivers: [] | any;
+  test: [] | any;
   constructor(
     private http: HttpClient,
     private router: Router,

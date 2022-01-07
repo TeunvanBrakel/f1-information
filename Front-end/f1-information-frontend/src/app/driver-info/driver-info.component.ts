@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-driver-info',
   templateUrl: './driver-info.component.html',
-  styleUrls: ['./driver-info.component.scss']
+  styleUrls: ['./driver-info.component.css']
 })
 export class DriverInfoComponent implements OnInit {
   driver: any = new Object;
