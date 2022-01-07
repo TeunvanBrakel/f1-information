@@ -12,16 +12,15 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Setup Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-      - name: Install angular CLI
-        run: npm install -g @angular/cli
-      - name: install packages
-        run: npm install
-      - name: Build
-        working-directory: Front-end/f1-information-frontend
-        run: npm run build -- --prod
+     steps:
+        - uses: actions/checkout@v2
+        - name: Setup Node
+          uses: actions/setup-node@v1
+          with:
+            node-version: 12.x
+        - name: Install Dependencies
+          working-directory: Front-end/f1-information-frontend
+          run: npm ci
+        - name: Build
+          working-directory: Front-end/f1-information-frontend
+          run: npm run build -- --prod
