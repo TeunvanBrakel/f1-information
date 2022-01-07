@@ -8,8 +8,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./all-drivers.component.css']
 })
 export class AllDriversComponent implements OnInit {
-  drivers: [];
-  test: [];
+  drivers: [] | any;
+  test: [] | any;
   constructor(
     private http: HttpClient,
     private router: Router,
