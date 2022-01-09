@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BoardModeratorComponent } from './board-moderator.component';
@@ -8,7 +9,8 @@ describe('BoardModeratorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BoardModeratorComponent ]
+      declarations: [ BoardModeratorComponent ],
+      imports: [HttpClientModule],
     })
     .compileComponents();
   });
