@@ -24,3 +24,6 @@ jobs:
       - name: Build
         working-directory: Front-end/f1-information-frontend
         run: npm run build -- --prod
+      - name: Test
+        working-directory: Front-end/f1-information-frontend
+        run: npm run test --no-build --verbosity normal
