@@ -1,5 +1,5 @@
 <div id="app">
-  <nav class="navbar navbar-expand navbar-dark bg-dark">
+  <nav class="navbar navbar-expand">
     <a href="#" class="navbar-brand">Statsf1Gaming</a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item">
@@ -15,7 +15,7 @@
         <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Game</a>
+        <a class="nav-link" href="#" *ngIf="isLoggedIn">Game</a>
       </li>
       <li class="nav-item"><a class="nav-link" href="/allDrivers">Drivers</a></li>
       <li class="nav-item"><a class="nav-link" href="#">Seasons</a></li>

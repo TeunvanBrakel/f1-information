@@ -1,0 +1,12 @@
+.profile-img-card{
+    height: 200px;
+    width: 100%;
+}
+
+.btn-primary:hover{
+    background-color: greenyellow;
+}
+
+.signupform{
+    background-color: #E0DCCC;
+}

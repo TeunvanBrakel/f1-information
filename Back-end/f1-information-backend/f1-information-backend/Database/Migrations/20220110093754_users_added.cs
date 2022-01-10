@@ -4,7 +4,7 @@ using MySql.EntityFrameworkCore.Metadata;
 
 namespace f1_information_backend.Migrations
 {
-    public partial class login_added : Migration
+    public partial class users_added : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -94,7 +94,8 @@ namespace f1_information_backend.Migrations
                     UserName = table.Column<string>(type: "text", nullable: true),
                     PassWord = table.Column<string>(type: "text", nullable: true),
                     Email = table.Column<string>(type: "text", nullable: true),
-                    GameSettingsId = table.Column<int>(type: "int", nullable: false)
+                    GameSettingsId = table.Column<int>(type: "int", nullable: false),
+                    Salt = table.Column<byte[]>(type: "varbinary(4000)", nullable: true)
                 },
                 constraints: table =>
                 {

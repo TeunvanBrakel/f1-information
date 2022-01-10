@@ -3,3 +3,11 @@
     border-color: blue;
     cursor: pointer;
 }
+
+.navbar{
+    background-color: #82C4B5;
+}
+
+li a:hover {
+    background-color: #CBE1D9;
+  }

@@ -280,6 +280,9 @@ namespace f1_information_backend.Migrations
                     b.Property<string>("PassWord")
                         .HasColumnType("text");
 
+                    b.Property<byte[]>("Salt")
+                        .HasColumnType("varbinary(4000)");
+
                     b.Property<string>("UserName")
                         .HasColumnType("text");
 
