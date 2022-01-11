@@ -27,4 +27,23 @@ jobs:
       - name: Test
         working-directory: Front-end/f1-information-frontend
         run: npm test
- 
+        
+  build_admin:
+    
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Install Dependencies
+        working-directory: Front-end/Admin-app
+        run: npm ci
+      - name: Build
+        working-directory: Front-end/Admin-app
+        run: npm run build -- --prod
+      - name: Test
+        working-directory: Front-end/Admin-app
+        run: npm test
