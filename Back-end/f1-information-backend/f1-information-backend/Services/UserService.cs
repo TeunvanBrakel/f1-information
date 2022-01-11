@@ -22,14 +22,58 @@ namespace f1_information_backend.Services
         public async Task<string> AddUser(User user)
         {
             GameSettings settings = new GameSettings("", "", "", 0);
-            user = hashedPassword(user);
-            user.GameSettings = settings;
-            context.Users.Add(user);
-            await context.SaveChangesAsync();
-            return "ok";
+            user = HashedPassword(user);
+            string isUserInputOK = CheckUserInput(user);
+            if (isUserInputOK == "ok")
+            {
+                user.GameSettings = settings;
+                context.Users.Add(user);
+                await context.SaveChangesAsync();
+                return "ok";
+            }
+            else
+            {
+                return isUserInputOK;
+            }
+
         }
 
-        private User hashedPassword(User user)
+        private string CheckUserInput(User user)
+        {
+            if(user.UserName.Length > 20)
+            {
+                return "Username is to long";
+            }else if (!CheckMail(user.Email))
+            {
+                return "Mail is not valid";
+            }
+            else
+            {
+                return "ok";
+            }
+        }
+
+        private bool CheckMail(string email)
+        {
+            var trimmedEmail = email.Trim();
+
+            if (trimmedEmail.EndsWith("."))
+            {
+                return false;
+            }
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == trimmedEmail;
+            }
+            catch
+            {
+                return false;
+            }
+
+        }
+
+        private User HashedPassword(User user)
         {
             User result = user;
             byte[] salt = new byte[128 / 8];

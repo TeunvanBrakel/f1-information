@@ -11,8 +11,8 @@ namespace f1_information_backend.Models
         public string UserName { get; set; }
         public string PassWord { get; set; }
         public string Email { get; set; }
-        public int GameSettingsId { get; set; }
-
+        public int GameSettingsId { get; private set; }
+        public string Role { get; set; }
         public byte[] Salt { get; set; }
         public GameSettings GameSettings { get; set; }
         public ICollection<RaceFavorites> RaceFavorites { get; set; }
@@ -25,12 +25,13 @@ namespace f1_information_backend.Models
 
         }
 
-        public User(string _userName, string _passWord, string _email, byte[] salt)
+        public User(string _userName, string _passWord, string _email, byte[] salt, int code)
         {
             UserName = _userName;
             PassWord = _passWord;
             Email = _email;
             Salt = salt;
+            SetRole(code);
         }
 
         public int getId()
@@ -40,6 +41,18 @@ namespace f1_information_backend.Models
         public string getUsername()
         {
             return UserName;
+        }
+
+        private void SetRole(int code)
+        {
+            if(code == 20011002)
+            {
+                Role = "Admin";
+            }
+            else
+            {
+                Role = "User";
+            }
         }
     }
 }

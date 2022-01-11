@@ -18,7 +18,7 @@ namespace f1_information_backend
         {
             _configuration = configuration;
         }
-        public string Authenticate(string userName, string password)
+        public string Authenticate(string userName, string password, string userRole)
         {
             var key = _configuration.GetValue<string>("JwtConfig:Key");
             var keyBytes = Encoding.ASCII.GetBytes(key);
@@ -29,7 +29,8 @@ namespace f1_information_backend
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.NameIdentifier, userName)
+                    new Claim(ClaimTypes.NameIdentifier, userName),
+                    new Claim(ClaimTypes.Role, userRole)
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(30),
                 SigningCredentials = new SigningCredentials
