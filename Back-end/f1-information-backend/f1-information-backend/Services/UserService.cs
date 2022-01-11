@@ -38,6 +38,11 @@ namespace f1_information_backend.Services
 
         }
 
+        public List<User> GetUsers()
+        {
+            return context.Users.ToList();
+        }
+
         private string CheckUserInput(User user)
         {
             if(user.UserName.Length > 20)

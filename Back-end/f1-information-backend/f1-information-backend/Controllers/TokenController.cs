@@ -58,10 +58,17 @@ namespace f1_information_backend.Controllers
         [HttpPost("Signup")]
         public IActionResult Signup([FromBody]User user)
         {
-            var result = userService.AddUser(user);
+            User userAccount = CreateNewUser(user);
+            var result = userService.AddUser(userAccount);
             if (result.Result != "ok")
                 return NotFound(result.Result);
             return Ok();
+        }
+
+        private User CreateNewUser(User user)
+        {
+            User result = new User(user.UserName, user.PassWord, user.Email, user.Salt, 0);
+            return result;
         }
     }
 }

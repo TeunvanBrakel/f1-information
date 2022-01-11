@@ -37,6 +37,9 @@ namespace f1_information_backend.Services
             {
                 await Add(Drivers[0]);
                 await Add(Drivers[1]);
+                User Admin = new User("Admin", "Admin", "Admin@gmail.com", null, 20011002);
+                context.Users.Add(Admin);
+                await context.SaveChangesAsync();
             }
             Driver test = new Driver();
             HttpResponseMessage response = await client.GetAsync("http://ergast.com/api/f1/drivers/alonso.JSON");
