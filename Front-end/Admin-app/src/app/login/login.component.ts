@@ -4,7 +4,7 @@ import { waitForAsync } from '@angular/core/testing';
 import { repeat } from 'rxjs';
 import { AuthService } from '../_services/auth.service';
 import { TokenStorageService } from '../_services/token-storage.service';
-
+import jwtDecode from 'jwt-decode';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -46,18 +46,30 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void{
     const { username, password } = this.form;
-    //console.log(this.authService.login(username, password));
     this.authService.login(username, password).subscribe(
       async data =>{
-        console.log(data.text);
-        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveToken(data);
         this.tokenStorage.saveUser(data);
-        console.log(this.tokenStorage);
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.tokenStorage.saveUser(username);
-        this.roles = this.tokenStorage.getUser();
-        this.reloadPage();
+        if(this.tokenStorage.getRole(data) != "Admin"){
+          this.tokenStorage.signOut();
+          this.errorMessage = "You are not permitted to login to this site."
+          this.failedLogin = this.failedLogin+1;
+          localStorage.setItem("fails", this.failedLogin.toLocaleString());
+          this.fails = window.localStorage.getItem("fails");
+          this.isLoginFailed = true;
+          if(this.fails == "5"){
+            await new Promise(f => setTimeout(f, 60000));
+            this.failedLogin = 0;
+            localStorage.setItem("fails", this.failedLogin.toLocaleString());
+            this.fails = window.localStorage.getItem("fails");
+          }
+        }else{
+          this.isLoginFailed = false;
+          this.isLoggedIn = true;
+          this.tokenStorage.saveUser(username);
+          this.roles = this.tokenStorage.getUser();
+          this.reloadPage();
+        }
       },
       async err => {
         this.errorMessage = err.title;

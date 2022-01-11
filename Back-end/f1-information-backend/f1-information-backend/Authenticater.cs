@@ -31,6 +31,19 @@ namespace f1_information_backend
             return false;
         }
 
+        public string GetRole(string userName, string password)
+        {
+            foreach (User user in _context.Users)
+            {
+                string hashed = hashedPassword(password, user.Salt);
+                if (user.UserName.Equals(userName) && user.PassWord.Equals(hashed))
+                {
+                    return user.Role;
+                }
+            }
+            return "";
+        }
+
         private string hashedPassword(string password, byte[] salt)
         {
             string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(

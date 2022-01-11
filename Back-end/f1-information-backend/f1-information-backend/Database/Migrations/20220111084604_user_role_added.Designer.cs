@@ -9,8 +9,8 @@ using f1_information_backend.Database;
 namespace f1_information_backend.Migrations
 {
     [DbContext(typeof(Database.DbContext))]
-    [Migration("20220110093754_users_added")]
-    partial class users_added
+    [Migration("20220111084604_user_role_added")]
+    partial class user_role_added
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -280,6 +280,9 @@ namespace f1_information_backend.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("PassWord")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Role")
                         .HasColumnType("text");
 
                     b.Property<byte[]>("Salt")
