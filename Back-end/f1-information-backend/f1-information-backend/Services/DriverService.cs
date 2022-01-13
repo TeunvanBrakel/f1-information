@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using f1_information_backend.Database;
 using System.Net.Http;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using System.Security.Cryptography;
 
 namespace f1_information_backend.Services
 {
@@ -37,7 +39,10 @@ namespace f1_information_backend.Services
             {
                 await Add(Drivers[0]);
                 await Add(Drivers[1]);
-                User Admin = new User("Admin", "Admin", "Admin@gmail.com", null, 20011002);
+                GameSettings settings = new GameSettings("", "", "", 0);
+                User Admin = new User("Admin", "1234567890", "Admin@gmail.com", null, 20011002);
+                Admin = HashedPassword(Admin);
+                Admin.GameSettings = settings;
                 context.Users.Add(Admin);
                 await context.SaveChangesAsync();
             }
@@ -93,6 +98,29 @@ namespace f1_information_backend.Services
                 return;
 
             Drivers[index] = driver;
+        }
+
+        private User HashedPassword(User user)
+        {
+            User result = user;
+            byte[] salt = new byte[128 / 8];
+            using (var rngCsp = new RNGCryptoServiceProvider())
+            {
+                rngCsp.GetNonZeroBytes(salt);
+            }
+            result.Salt = salt;
+            Console.WriteLine($"Salt: {Convert.ToBase64String(salt)}");
+
+            string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(
+                password: result.PassWord,
+                salt: salt,
+                prf: KeyDerivationPrf.HMACSHA256,
+                iterationCount: 100000,
+                numBytesRequested: 256 / 8));
+            Console.WriteLine($"Haashed:{hashed}");
+            result.PassWord = hashed;
+            return result;
+
         }
     }
 }

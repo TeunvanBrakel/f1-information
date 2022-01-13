@@ -271,6 +271,9 @@ namespace f1_information_backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<bool>("Banned")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<string>("Email")
                         .HasColumnType("text");
 
@@ -279,6 +282,9 @@ namespace f1_information_backend.Migrations
 
                     b.Property<string>("PassWord")
                         .HasColumnType("text");
+
+                    b.Property<int>("Reports")
+                        .HasColumnType("int");
 
                     b.Property<string>("Role")
                         .HasColumnType("text");

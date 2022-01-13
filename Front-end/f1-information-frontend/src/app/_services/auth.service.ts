@@ -31,4 +31,10 @@ export class AuthService {
       code: 12345678,
     }, httpOptions);
   }
+
+  report(username: string) :Observable<any>{
+    return this.http.post('https://localhost:44381/api/Name/ReportUser', {
+      username,
+    }, httpOptions);
+  }
 }

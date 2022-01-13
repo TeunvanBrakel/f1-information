@@ -1,0 +1,17 @@
+.UserInfo{
+    background-color: #CBE1D9;
+    display: flex;
+    justify-content: space-around;
+    border: solid;
+}
+.userInfoRow{
+    display: flex;
+    justify-content: space-around;
+}
+.BanButton{
+    width: 100%;
+    margin: 5px;
+}
+.BanButton:hover{
+    background-color: aquamarine;
+}
