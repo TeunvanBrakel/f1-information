@@ -32,11 +32,80 @@ namespace f1_information_backend.Controllers
                 {
                     user.UserName,
                     user.Email,
-                    user.Role
+                    user.Role,
+                    user.Reports.ToString(),
+                    user.Banned.ToString()
                 };
                 allNames.Add(userInfo);
             }
             return Ok(allNames);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("UserNames")]
+        public IActionResult GetUserNames()
+        {
+            List<User> allUsers = userService.GetUsers();
+            List<string> allNames = new List<string>();
+            foreach (User user in allUsers)
+            {
+                allNames.Add(user.UserName);
+            }
+            return Ok(allNames);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("ReportUser")]
+        public IActionResult ReportUser([FromBody]User reportedUser)
+        {
+            List<User> allUsers = userService.GetUsers();
+            foreach(User user in allUsers)
+            {
+                if(user.UserName == reportedUser.UserName)
+                {
+                    user.Reports = user.Reports + 1;
+                    userService.ChangeUser(user);
+                    Console.WriteLine(reportedUser.UserName);
+                    return Ok(user.Email);
+                }
+            }
+            return NotFound();
+        }
+
+        [AllowAnonymous]
+        [HttpPost("BanUser")]
+        public IActionResult BanUser([FromBody] User reportedUser)
+        {
+            List<User> allUsers = userService.GetUsers();
+            foreach (User user in allUsers)
+            {
+                if (user.UserName == reportedUser.UserName)
+                {
+                    user.Banned = true;
+                    userService.ChangeUser(user);
+                    Console.WriteLine(reportedUser.UserName);
+                    return Ok();
+                }
+            }
+            return NotFound();
+        }
+
+        [AllowAnonymous]
+        [HttpPost("UnBanUser")]
+        public IActionResult UnBanUser([FromBody] User reportedUser)
+        {
+            List<User> allUsers = userService.GetUsers();
+            foreach (User user in allUsers)
+            {
+                if (user.UserName == reportedUser.UserName)
+                {
+                    user.Banned = false;
+                    userService.ChangeUser(user);
+                    Console.WriteLine(reportedUser.UserName);
+                    return Ok();
+                }
+            }
+            return NotFound();
         }
     }
 }

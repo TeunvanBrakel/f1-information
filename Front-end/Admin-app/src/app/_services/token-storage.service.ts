@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import jwtDecode from 'jwt-decode';
 
 const TOKEN_KEY = 'auth-token';
@@ -9,7 +10,7 @@ const USER_KEY = 'auth-user';
 })
 export class TokenStorageService {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   signOut(): void {
     window.sessionStorage.clear();
@@ -21,6 +22,9 @@ export class TokenStorageService {
   }
 
   public getToken(): string | null {
+    if(window.sessionStorage.getItem(TOKEN_KEY) == undefined){
+      return null;
+    }
     return window.sessionStorage.getItem(TOKEN_KEY);
   } 
 
@@ -37,9 +41,23 @@ export class TokenStorageService {
     return {};
   }
 
-  public getRole(token: string): string | null {
+  public getRole(token: string ): string | null {
     var user  : any  = jwtDecode(token);
     var result = user.role;
     return result;
+  }
+
+  public checkRole(): boolean {
+    var token = this.getToken();
+    if(token == undefined){
+      this.router.navigateByUrl('login');
+      return false;
+    }else{
+      if(this.getRole(token) != "Admin"){
+        this.router.navigateByUrl('login');
+        return false;
+      }
+      return true;
+    }
   }
 }

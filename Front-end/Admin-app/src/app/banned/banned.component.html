@@ -1,0 +1,14 @@
+<div class="row userInfoRow">
+    <b class="column">Username:</b>
+    <b class="column">Email:</b>
+    <b class="column">Reports:</b>
+</div>
+<div *ngFor="let user of users">
+    
+    <div class="UserInfo row" *ngIf="user[4]=='True' && user[2]!='Admin'">
+        <p class="column">{{user[0]}}</p>
+        <p class="column">{{user[1]}}</p>
+        <p class="column">{{user[3]}}</p>
+    </div>
+    <button class="BanButton" *ngIf="user[4]=='True' && user[2]!='Admin'" (click)="UnBanUser(user[0],user[1])">Unban Player</button>
+</div>

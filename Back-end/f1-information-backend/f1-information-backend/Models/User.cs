@@ -14,6 +14,8 @@ namespace f1_information_backend.Models
         public int GameSettingsId { get; private set; }
         public string Role { get; set; }
         public byte[] Salt { get; set; }
+        public int Reports { get; set; }
+        public bool Banned { get; set; }
         public GameSettings GameSettings { get; set; }
         public ICollection<RaceFavorites> RaceFavorites { get; set; }
         public ICollection<DriverFavorites> DriverFavorites { get; set; }

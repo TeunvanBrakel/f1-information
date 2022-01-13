@@ -42,6 +42,11 @@ namespace f1_information_backend.Services
         {
             return context.Users.ToList();
         }
+        public void ChangeUser(User user)
+        {
+            context.Users.Update(user);
+            context.SaveChangesAsync();
+        }
 
         private string CheckUserInput(User user)
         {

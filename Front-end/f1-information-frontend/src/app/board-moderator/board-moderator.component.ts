@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TokenStorageService } from '../_services/token-storage.service';
 import { UserService } from '../_services/user.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { UserService } from '../_services/user.service';
 export class BoardModeratorComponent implements OnInit {
   content?: string;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private tokenStorage: TokenStorageService) { }
 
   ngOnInit(): void {
     this.userService.getModeratorBoard().subscribe(
@@ -20,6 +21,7 @@ export class BoardModeratorComponent implements OnInit {
         this.content = JSON.parse(err.error).message;
       }
     );
+    this.tokenStorage.checkRole()
   }
 
 }
