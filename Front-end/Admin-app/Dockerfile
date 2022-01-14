@@ -1,9 +1,11 @@
-#stage 1
-FROM node:latest as node
+FROM node:lts-alpine as build-stage
+RUN mkdir -p /app
 WORKDIR /app
-COPY . .
+COPY package*.json ./
 RUN npm install
-RUN npm run build --prod
-#stage 2
-FROM nginx:alpine
-COPY --from=node /app/dist/demo-app /usr/share/nginx/html
+COPY . .
+RUN npm run build
+FROM nginx:stable-alpine as production-stage
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+EXPOSE 4200
+CMD ["nginx", "-g", "daemon off;"]
