@@ -69,3 +69,25 @@ jobs:
 
       - name: deploy Docker image to dockerhub
         run: docker push teunix/my-private-repo:admin
+        
+  Docker_Build_and_Push_Action_main:
+      runs-on: ubuntu-latest
+      needs: [build_Angular]
+
+      steps:
+      - uses: actions/checkout@v2
+      - name: Docker Login
+        uses: docker/login-action@v1.10.0
+        with:
+            username:  ${{secrets.DOCKERHUB_USERNAME}}
+            password: ${{secrets.DOCKERHUB_ACCESSTOKEN}}
+          
+      - name: Build the Docker image
+        working-directory: Front-end/f1-information-frontend
+        run: docker build -t teunix/my-private-repo .
+
+      - name: tag
+        run: docker tag teunix/my-private-repo:latest teunix/my-private-repo:main
+
+      - name: deploy Docker image to dockerhub
+        run: docker push teunix/my-private-repo:main
