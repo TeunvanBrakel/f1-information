@@ -39,7 +39,8 @@ jobs:
             password: ${{secrets.DOCKERHUB_ACCESSTOKEN}}
           
       - name: Build the Docker image
-        run: docker build -f /Back-end  -t teunix/my-private-repo .
+        working-directory: Back-end
+        run: docker build -f $REPO/Back-end -t teunix/my-private-repo .
 
       - name: tag
         run: docker tag teunix/my-private-repo:backend
