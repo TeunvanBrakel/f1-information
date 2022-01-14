@@ -39,7 +39,7 @@ jobs:
             password: ${{secrets.DOCKERHUB_ACCESSTOKEN}}
           
       - name: Build the Docker image
-        working-directory: Back-end
+        working-directory: Back-end/f1-information-backend/f1-information-backend
         run: docker build -t teunix/my-private-repo .
       
 
