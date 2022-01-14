@@ -47,3 +47,28 @@ jobs:
       - name: Test
         working-directory: Front-end/Admin-app
         run: npm test
+
+  Docker_Build_and_Push_Action_Admin:
+      runs-on: ubuntu-latest
+      needs: [build_admin]
+
+      steps:
+      - uses: actions/checkout@v2
+      
+      - name: Docker Build & Push Action
+        uses: mr-smithers-excellent/docker-build-push@v5.6
+        with:
+          # Name of the Docker image
+          image: 450192/Admin-app
+          # Tags override for Docker image
+          tags: latest
+          # Target Docker registry
+          registry: docker.io
+          # Location of Dockerfile, if not Dockerfile in root directory
+          dockerfile: Front-end/Admin-app/Dockerfile
+          # Directory to run `docker build` from, if not project root
+          directory: Front-end/customerapp-vue                    
+          # Docker registry username
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          # Docker registry password
+          password: ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
