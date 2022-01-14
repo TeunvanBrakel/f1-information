@@ -1,0 +1,22 @@
+<div class="container">
+    <header class="jumbotron">
+        <img class="image" src="https://image.flaticon.com/icons/png/512/16/16341.png" alt="Italian Trulli">
+        <p>Your username is: {{ content }}</p>
+        <p>Your email address is: demo@gmail.com<p>
+        <p><b>Report player</b> </p>
+        <input
+          type="text"
+          class="form-control"
+          name="reporterUsername"
+          [(ngModel)]="form.reporterUsername"
+          required
+          #username="ngModel"
+        />
+        <div *ngFor="let user of users">
+            <p *ngIf="user.toLowerCase( ).includes(form.reporterUsername)" (click)="form.reporterUsername=user">{{user}}</p>
+        </div>
+        <button (click)="FindUser(form.reporterUsername)">Find User</button>
+        <button (click)="ReportUser(form.reporterUsername)">Report</button>
+        <p *ngIf="errorMessage != ''">{{errorMessage}}</p>
+    </header>
+  </div>

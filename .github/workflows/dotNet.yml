@@ -1,0 +1,49 @@
+name: CI/CD dotNetCore
+
+on: 
+  push:
+    branches: [ dev, main ]
+  pull_request:
+    branches: [ dev, main ]
+
+jobs:
+  build_NetCore:
+  
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+    - name: Restore dependencies
+      working-directory: Back-end/f1-information-backend
+      run: dotnet restore
+    - name: Build
+      working-directory: Back-end/f1-information-backend
+      run: dotnet build --no-restore
+    - name: Test
+      working-directory: Back-end/f1-information-backend/BackendTests
+      run: dotnet test --no-build --verbosity normal
+  docker_build:
+    runs-on: ubuntu-latest
+    needs: [build_NetCore]
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Docker Login
+        uses: docker/login-action@v1.10.0
+        with:
+            username:  ${{secrets.DOCKERHUB_USERNAME}}
+            password: ${{secrets.DOCKERHUB_ACCESSTOKEN}}
+          
+      - name: Build the Docker image
+        working-directory: Back-end/f1-information-backend/f1-information-backend
+        run: docker build -t teunix/my-private-repo .
+
+      - name: tag
+        run: docker tag teunix/my-private-repo:latest teunix/my-private-repo:backend
+
+      - name: deploy Docker image to dockerhub
+        run: docker push teunix/my-private-repo:backend

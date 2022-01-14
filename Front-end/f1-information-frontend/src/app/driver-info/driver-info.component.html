@@ -1,0 +1,17 @@
+<div  *ngIf="driver.name != '' ">
+    <div class="header">
+        <button type="button" routerLink="/allDrivers">Back to menu</button>
+    </div>
+    <div>
+    <p class="drivername">{{driver.name}}</p>
+    <img  src={{driver.image}} class="picture">
+    <p>Age: {{driver.age}}</p>
+    <p>The current team is: {{driver.currentTeam}}</p>
+    <p>Current points: {{driver.points}}</p>
+    <p>wins: {{driver.wins}}</p>
+    <p>pole positions: {{driver.polePositions}}</p>
+    </div>
+</div>
+<div *ngIf="driver.name === '' ">
+ <p>Er is geen rijder gevonden.</p>
+</div>
