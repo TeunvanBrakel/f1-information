@@ -28,7 +28,7 @@ namespace f1_information_backend.Services
             {
                 user.GameSettings = settings;
                 context.Users.Add(user);
-                await context.SaveChangesAsync();
+                context.SaveChanges();
                 return "ok";
             }
             else

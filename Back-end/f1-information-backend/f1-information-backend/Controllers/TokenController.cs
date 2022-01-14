@@ -20,6 +20,7 @@ namespace f1_information_backend.Controllers
         private readonly Authenticater authenticater;
         private int minSeconds = 5;
         private int maxSeconds = 30;
+
         public TokenController(IJwtTokenManager jwtTokenManager, UserService service, Authenticater _authenticater)
         {
             _tokenManger = jwtTokenManager;

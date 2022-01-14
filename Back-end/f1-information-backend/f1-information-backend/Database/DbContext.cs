@@ -14,6 +14,11 @@ namespace f1_information_backend.Database
 
         }
 
+        public DbContext()
+        {
+
+        }
+
         public DbSet<Driver> Drivers { get; set; }
         public DbSet<Race> Races { get; set; }
         public DbSet<Season> Seasons { get; set; }
@@ -21,7 +26,7 @@ namespace f1_information_backend.Database
         public DbSet<Result> Results { get; set; }
         public DbSet<RaceSeason> RaceSeasons { get; set; }
         public DbSet<RaceDrivers> RaceDrivers { get; set; }
-        public DbSet<User> Users { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
