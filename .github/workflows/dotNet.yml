@@ -27,7 +27,7 @@ jobs:
       working-directory: Back-end/f1-information-backend/BackendTests
       run: dotnet test --no-build --verbosity normal
   docker_build:
-    runs-on: ubuntu-latests
+    runs-on: ubuntu-latest
     needs: [build_NetCore]
     
     steps:
