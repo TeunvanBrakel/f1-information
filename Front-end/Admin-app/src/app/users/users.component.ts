@@ -19,8 +19,10 @@ export class UsersComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if(this.tokenStorage.checkRole() == true)
-    this.GetAllUsers();
+    if(this.tokenStorage.checkRole() == true){
+      this.GetAllUsers();
+    }
+    
   }
 
   private GetAllUsers() {

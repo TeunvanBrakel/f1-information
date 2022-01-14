@@ -24,8 +24,9 @@ export class BoardUserComponent implements OnInit {
   constructor(private userService : UserService, private tokenStorage :TokenStorageService,  private http: HttpClient, private authService: AuthService) { }
 
   ngOnInit(): void {
-    if(this.tokenStorage.checkRole() == true)
-    this.content = this.tokenStorage.getUser();
+    if(this.tokenStorage.checkRole() == true){
+      this.content = this.tokenStorage.getUser();
+    }
   }
 
   public async FindUser(name: string){
@@ -38,8 +39,13 @@ export class BoardUserComponent implements OnInit {
     if(this.users.includes(name)){
       this.authService.report(name).subscribe(
         data => console.log(data));
+        this.errorMessage = "The report is successful.";
     }else{
-      this.errorMessage = "The name is not a valid username."
+      if(name == ""){
+        this.errorMessage = "You have to input a username in order to report a user.";
+      }else{
+        this.errorMessage = "The name is not a valid username. Here are all the possible users you can report."
+      }
     }
   }
 }

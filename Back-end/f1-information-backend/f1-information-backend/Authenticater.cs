@@ -44,6 +44,19 @@ namespace f1_information_backend
             return "";
         }
 
+        public bool CheckIfBanned(string userName, string password)
+        {
+            foreach (User user in _context.Users)
+            {
+                string hashed = hashedPassword(password, user.Salt);
+                if (user.UserName.Equals(userName) && user.PassWord.Equals(hashed) && user.Banned.Equals(false))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private string hashedPassword(string password, byte[] salt)
         {
             string hashed = Convert.ToBase64String(KeyDerivation.Pbkdf2(

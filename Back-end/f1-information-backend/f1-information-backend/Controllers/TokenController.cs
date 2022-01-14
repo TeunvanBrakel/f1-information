@@ -42,7 +42,16 @@ namespace f1_information_backend.Controllers
                 string role = authenticater.GetRole(credential.UserName, credential.Password);
                 if(!string.IsNullOrEmpty(role))
                 {
-                    token = _tokenManger.Authenticate(credential.UserName, credential.Password, role);
+                    if(authenticater.CheckIfBanned(credential.UserName, credential.Password) == false)
+                    {
+                        Random rand = new Random();
+                        Thread.Sleep(rand.Next(minSeconds, maxSeconds) * 1000);
+                        return Unauthorized("You are banned from this site so you can not login.");
+                    }
+                    else
+                    {
+                        token = _tokenManger.Authenticate(credential.UserName, credential.Password, role);
+                    }
                 }
             }
             if (string.IsNullOrEmpty(token))

@@ -90,7 +90,7 @@ namespace f1_information_backend.Controllers
             return NotFound();
         }
 
-        [AllowAnonymous]
+        [Authorize]
         [HttpPost("UnBanUser")]
         public IActionResult UnBanUser([FromBody] User reportedUser)
         {

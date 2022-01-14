@@ -57,4 +57,17 @@ export class TokenStorageService {
       return false;
     }
   }
+  public checkIfAdminRole(): boolean {
+    var token = this.getToken();
+    if(token == undefined){
+      this.router.navigateByUrl('login');
+      return false;
+    }else{
+      if(this.getRole(token) == "Admin"){
+        return true;
+      }
+      this.router.navigateByUrl('user');
+      return false;
+    }
+  }
 }

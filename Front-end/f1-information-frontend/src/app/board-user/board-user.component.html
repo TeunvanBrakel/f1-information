@@ -17,5 +17,6 @@
         </div>
         <button (click)="FindUser(form.reporterUsername)">Find User</button>
         <button (click)="ReportUser(form.reporterUsername)">Report</button>
+        <p *ngIf="errorMessage != ''">{{errorMessage}}</p>
     </header>
   </div>

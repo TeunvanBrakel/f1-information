@@ -21,7 +21,7 @@ export class BoardAdminComponent implements OnInit {
         this.content = JSON.parse(err.error).message;
       }
     )
-    this.tokenStorage.checkRole()
+    this.tokenStorage.checkIfAdminRole()
   }
 
 }

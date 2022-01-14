@@ -46,13 +46,10 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void{
     const { username, password } = this.form;
-    //console.log(this.authService.login(username, password));
     this.authService.login(username, password).subscribe(
       async data =>{
-        console.log(data.text);
-        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveToken(data);
         this.tokenStorage.saveUser(data);
-        console.log(this.tokenStorage);
         this.isLoginFailed = false;
         this.isLoggedIn = true;
         this.tokenStorage.saveUser(username);
@@ -60,7 +57,7 @@ export class LoginComponent implements OnInit {
         this.reloadPage();
       },
       async err => {
-        this.errorMessage = err.title;
+        this.errorMessage = err.error;
         this.failedLogin = this.failedLogin+1;
         localStorage.setItem("fails", this.failedLogin.toLocaleString());
         this.fails = window.localStorage.getItem("fails");
