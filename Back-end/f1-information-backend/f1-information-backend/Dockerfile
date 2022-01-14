@@ -10,7 +10,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS build
 WORKDIR /src
-COPY ["f1-information-backend/f1-information-backend.csproj", "f1-information-backend/"]
+COPY ["f1-information-backend.csproj", "f1-information-backend/"]
 RUN dotnet restore "f1-information-backend/f1-information-backend.csproj"
 COPY . .
 WORKDIR "/src/f1-information-backend"
