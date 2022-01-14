@@ -54,21 +54,18 @@ jobs:
 
       steps:
       - uses: actions/checkout@v2
-      
-      - name: Docker Build & Push Action
-        uses: mr-smithers-excellent/docker-build-push@v5.6
+      - name: Docker Login
+        uses: docker/login-action@v1.10.0
         with:
-          # Name of the Docker image
-          image: teunix/my-private-repo
-          # Tags override for Docker image
-          tags: latest
-          # Target Docker registry
-          registry: docker.io
-          # Location of Dockerfile, if not Dockerfile in root directory
-          dockerfile: Front-end/Admin-app/Dockerfile
-          # Directory to run `docker build` from, if not project root
-          directory: Front-end/Admin-app                  
-          # Docker registry username
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          # Docker registry password
-          password: ${{ secrets.DOCKERHUB_ACCESSTOKEN }}
+            username:  ${{secrets.DOCKERHUB_USERNAME}}
+            password: ${{secrets.DOCKERHUB_ACCESSTOKEN}}
+          
+      - name: Build the Docker image
+        working-directory: Front-end/Admin-app
+        run: docker build -t teunix/my-private-repo .
+
+      - name: tag
+        run: docker tag teunix/my-private-repo:latest teunix/my-private-repo:admin
+
+      - name: deploy Docker image to dockerhub
+        run: docker push teunix/my-private-repo:admin
