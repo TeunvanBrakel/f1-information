@@ -44,7 +44,7 @@ jobs:
       
 
       - name: tag
-        run: docker tag teunix/my-private-repo:backend
+        run: docker tag teunix/my-private-repo:latest teunix/my-private-repo:backend
 
       - name: Test the Docker image
         run: docker run teunix/my-private-repo:backend
