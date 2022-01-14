@@ -1,10 +1,10 @@
-name: CI dotNetCore
+name: CI/CD dotNetCore
 
 on: 
   push:
-    branches: [ dev ]
+    branches: [ dev, main ]
   pull_request:
-    branches: [ dev ]
+    branches: [ dev, main ]
 
 jobs:
   build_NetCore:
