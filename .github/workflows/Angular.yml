@@ -67,7 +67,7 @@ jobs:
           # Location of Dockerfile, if not Dockerfile in root directory
           dockerfile: Front-end/Admin-app/Dockerfile
           # Directory to run `docker build` from, if not project root
-          directory: Front-end/customerapp-vue                    
+          directory: Front-end/Admin-app                  
           # Docker registry username
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           # Docker registry password
